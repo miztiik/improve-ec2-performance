@@ -100,7 +100,7 @@ You can reach out to us to get more details through [here](https://youtube.com/c
 #### References
 
 1. [MTU in Linux](https://docs.aws.amazon.com/en_pv/AWSEC2/latest/UserGuide/network_mtu.html#instance-type-summary-table)
-2. [MTU in Windows](MTU Between Two Hosts)
+2. [MTU in Windows](https://docs.aws.amazon.com/en_pv/AWSEC2/latest/WindowsGuide/network_mtu.html)
 3. [Count Inbound Packets On Interface](https://stackoverflow.com/questions/34231968/count-incoming-packets-on-specific-network-interface)
 
 ### Metadata
