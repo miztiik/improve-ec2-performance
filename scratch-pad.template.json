@@ -288,6 +288,7 @@
           "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
         },
         "InstanceType": "t2.micro",
+        "KeyName": "virk",
         "Monitoring": false,
         "NetworkInterfaces": [
           {
@@ -310,15 +311,11 @@
           {
             "Key": "Name",
             "Value": "KonStone-Stack"
-          },
-          {
-            "Key": "Owner",
-            "Value": "KonStone"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "scratch-pad/web-instance_01"
+        "aws:cdk:path": "scratch-pad/webinstance01"
       }
     },
     "webinstance02": {
@@ -336,6 +333,7 @@
           "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
         },
         "InstanceType": "t2.micro",
+        "KeyName": "virk",
         "Monitoring": false,
         "NetworkInterfaces": [
           {
@@ -362,7 +360,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "scratch-pad/web-instance_02"
+        "aws:cdk:path": "scratch-pad/webinstance02"
       }
     }
   },
@@ -370,6 +368,17 @@
     "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter": {
       "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
       "Default": "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
+    }
+  },
+  "Outputs": {
+    "webinst01": {
+      "Description": "Web Server Public IP",
+      "Value": {
+        "Fn::GetAtt": [
+          "webinstance01",
+          "PublicIp"
+        ]
+      }
     }
   }
 }

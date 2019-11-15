@@ -46,12 +46,12 @@ class ScratchPadStack(core.Stack):
 
         # We define instance details here
         web_inst_01 = ec2.CfnInstance(self,
-            "web-instance_01",
+            "webinstance01",
             image_id = ami_id,
             instance_type = "t2.micro",
             monitoring = False,
+            key_name = ssh_key_name,
             # tags = [{"key": "Name","value": "KonStone-Web-instance"}],
-            # block_device_mappings=[{"deviceName":"/dev/xvda"}]
             block_device_mappings=[{
                 "ebs" : { "volumeSize" : 25 },
                 "deviceName" : "/dev/xvda",
@@ -66,10 +66,11 @@ class ScratchPadStack(core.Stack):
         )
 
         web_inst_02 = ec2.CfnInstance(self,
-            "web-instance_02",
+            "webinstance02",
             image_id = ami_id,
             instance_type = "t2.micro",
             monitoring = False,
+            key_name = ssh_key_name,
             # tags = [{"key": "Name","value": "KonStone-Web-instance"}],
             # block_device_mappings=[{"deviceName":"/dev/xvda"}]
             block_device_mappings=[{
@@ -84,5 +85,9 @@ class ScratchPadStack(core.Stack):
             }], #https: //github.com/aws/aws-cdk/issues/3419
             tags=[core.CfnTag(key="Name", value=f"KonStone-Stack")]
         )
-
-        core.Tag.add(web_inst_01,key="Owner",value="KonStone",include_resource_types=[])
+        # https://docs.aws.amazon.com/cdk/api/latest/python/modules.html
+        a1 = core.Fn.get_att(logical_name_of_resource="webinstance01",attribute_name="PublicIp")
+        core.CfnOutput(self,
+            "web_inst_01",
+            value=a1.to_string(),
+            description="Web Server Public IP")
